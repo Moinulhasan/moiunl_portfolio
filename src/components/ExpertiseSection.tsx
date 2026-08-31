@@ -1,132 +1,142 @@
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Progress } from "@/components/ui/progress";
 import { Brain, Cloud, Database, Layout, Server, Terminal } from "lucide-react";
+
+const LEVEL_PERCENT: Record<string, number> = {
+  expert: 95,
+  advanced: 80,
+  intermediate: 65,
+  beginner: 50,
+};
 
 export function ExpertiseSection() {
   const categories = [
     {
       id: "backend",
-      label: "Backend",
-      icon: <Server className="w-4 h-4 mr-2" />,
+      icon: <Server className="w-5 h-5" />,
       title: "Backend Engineering",
       description: "Architecture & Scalable Systems",
       longDescription:
-        "I specialize in building robust server-side applications that can handle high traffic and complex business logic. My focus is on clean architecture, API design, and long-term maintainability.",
+        "5+ years architecting Laravel & PHP systems in production — from ERP billing platforms to microservice-based distributor management — built for scale, modularity, and long-term maintainability.",
       skills: [
-        { name: "PHP 8.x", level: "Expert" },
-        { name: "Laravel 10", level: "Expert" },
-        { name: "Node.js", level: "Advanced" },
+        { name: "PHP", level: "Advanced" },
+        { name: "Laravel", level: "Expert" },
         { name: "RESTful APIs", level: "Expert" },
-        { name: "Microservices", level: "Advanced" },
-        { name: "System Design", level: "Advanced" },
+        { name: "Microservices Architecture", level: "Advanced" },
+        { name: "Auth & Sanctum", level: "Advanced" },
+        { name: "Job Scheduling (SupervisorD)", level: "Advanced" },
       ],
       color: "text-purple-400",
       bg: "bg-purple-500/10",
+      bar: "[&>div]:bg-purple-400",
+      topBar: "bg-gradient-to-r from-purple-500 via-purple-400 to-transparent",
     },
     {
       id: "cloud",
-      label: "DevOps",
-      icon: <Cloud className="w-4 h-4 mr-2" />,
+      icon: <Cloud className="w-5 h-5" />,
       title: "Cloud & Infrastructure",
       description: "AWS & Automated Deployment",
       longDescription:
-        "I design and manage cloud infrastructure to ensure high availability and security. My DevOps workflow includes automated testing, CI/CD pipelines, and containerization.",
+        "Deploying and scaling SaaS applications on AWS with Docker-based microservices, automated CI/CD, and shell-scripted operations that keep high-transaction systems running reliably.",
       skills: [
-        { name: "AWS (EC2, S3, RDS)", level: "Advanced" },
+        { name: "AWS (EC2, S3)", level: "Intermediate" },
         { name: "Docker", level: "Advanced" },
         { name: "CI/CD Pipelines", level: "Advanced" },
-        { name: "GitHub Actions", level: "Advanced" },
-        { name: "Linux Admin", level: "Intermediate" },
+        { name: "Shell Scripting", level: "Advanced" },
+        { name: "Queue Management (RabbitMQ)", level: "Advanced" },
       ],
       color: "text-sky-400",
       bg: "bg-sky-500/10",
+      bar: "[&>div]:bg-sky-400",
+      topBar: "bg-gradient-to-r from-sky-500 via-sky-400 to-transparent",
     },
     {
       id: "database",
-      label: "Database",
-      icon: <Database className="w-4 h-4 mr-2" />,
+      icon: <Database className="w-5 h-5" />,
       title: "Database Management",
       description: "Optimization & Modeling",
       longDescription:
-        "Data is the core of any application. I ensure data integrity and performance through optimized schemas, proper indexing, and efficient caching strategies.",
+        "Data integrity and performance at scale — optimized MySQL schemas, Redis caching, and MongoDB integrations powering billing, ticketing, and distribution platforms under high transaction loads.",
       skills: [
-        { name: "MySQL", level: "Expert" },
+        { name: "MySQL", level: "Advanced" },
         { name: "Redis", level: "Advanced" },
-        { name: "MongoDB", level: "Intermediate" },
-        { name: "Query Optimization", level: "Expert" },
-        { name: "Data Modeling", level: "Advanced" },
+        { name: "MongoDB", level: "Advanced" },
+        { name: "Database Management", level: "Advanced" },
+        { name: "Query Optimization", level: "Advanced" },
       ],
       color: "text-emerald-400",
       bg: "bg-emerald-500/10",
+      bar: "[&>div]:bg-emerald-400",
+      topBar: "bg-gradient-to-r from-emerald-500 via-emerald-400 to-transparent",
     },
     {
       id: "frontend",
-      label: "Frontend",
-      icon: <Layout className="w-4 h-4 mr-2" />,
+      icon: <Layout className="w-5 h-5" />,
       title: "Frontend Development",
       description: "Interactive User Interfaces",
       longDescription:
-        "While my primary focus is backend, I am proficient in modern frontend frameworks to build complete, full-stack solutions with responsive and accessible designs.",
+        "Full-stack delivery pairing a Laravel backend with React.js and Vue.js frontends — shipping complete, production-ready platforms from multi-vendor marketplaces to ticketing systems.",
       skills: [
-        { name: "JavaScript (ES6+)", level: "Advanced" },
-        { name: "React", level: "Intermediate" },
-        { name: "Vue.js", level: "intermediate" },
-        { name: "Tailwind CSS", level: "Expert" },
-        { name: "HTML5/CSS3", level: "Expert" },
+        { name: "JavaScript", level: "Expert" },
+        { name: "React.js", level: "Advanced" },
+        { name: "Vue.js", level: "Advanced" },
+        { name: "HTML5/CSS3", level: "Advanced" },
       ],
       color: "text-pink-400",
       bg: "bg-pink-500/10",
+      bar: "[&>div]:bg-pink-400",
+      topBar: "bg-gradient-to-r from-pink-500 via-pink-400 to-transparent",
     },
     {
       id: "tools",
-      label: "Tools",
-      icon: <Terminal className="w-4 h-4 mr-2" />,
-      title: "Tools & Workflow",
-      description: "Efficiency & Collaboration",
+      icon: <Terminal className="w-5 h-5" />,
+      title: "Delivery & Process",
+      description: "Business Analysis & Collaboration",
       longDescription:
-        "I utilize a suite of industry-standard tools to streamline development, enhance collaboration, and maintain code quality throughout the project lifecycle.",
+        "Cross-functional delivery from requirements to release — pairing solution design and process optimization with the day-to-day tooling that keeps distributed teams aligned.",
       skills: [
-        { name: "Git & GitHub", level: "Expert" },
-        { name: "Postman", level: "Advanced" },
-        { name: "Jira / Trello", level: "Advanced" },
-        { name: "VS Code", level: "Expert" },
-        { name: "Composer / NPM", level: "Expert" },
+        { name: "Jira / ClickUp / Slack", level: "Advanced" },
+        { name: "Business & Solution Analysis", level: "Advanced" },
+        { name: "Solution Design & Process Optimization", level: "Advanced" },
+        { name: "Git & GitHub", level: "Advanced" },
+        { name: "Problem Solving", level: "Intermediate" },
       ],
       color: "text-yellow-400",
       bg: "bg-yellow-500/10",
+      bar: "[&>div]:bg-yellow-400",
+      topBar: "bg-gradient-to-r from-yellow-500 via-yellow-400 to-transparent",
     },
     {
       id: "ai",
-      label: "AI",
-      icon: <Brain className="w-4 h-4 mr-2" />,
-      title: "Artificial Intelligence",
-      description: "AI Integration & Automation",
+      icon: <Brain className="w-5 h-5" />,
+      title: "AI-Augmented Engineering",
+      description: "Agentic Workflows & Automation",
       longDescription:
-        "Leveraging AI tools to enhance development workflows and build intelligent applications.",
+        "Integrating agentic AI workflows and MCP-based tooling into the development lifecycle — from AI-assisted code generation to context-aware automation — to ship faster without cutting corners.",
       skills: [
-        { name: "Cursor", level: "Expert" },
-        { name: "n8n", level: "Advanced" },
-        { name: "Chat GPT", level: "Expert" },
-        { name: "Antigravity", level: "Moderate" },
-        { name: "Notebookllm", level: "Moderate" },
+        { name: "Agentic Development", level: "Advanced" },
+        { name: "MCP (Model Context Protocol)", level: "Advanced" },
+        { name: "AI-Assisted Code Generation", level: "Expert" },
+        { name: "Prompt Engineering", level: "Advanced" },
+        { name: "AI Workflow Automation", level: "Advanced" },
       ],
       color: "text-indigo-400",
       bg: "bg-indigo-500/10",
+      bar: "[&>div]:bg-indigo-400",
+      topBar: "bg-gradient-to-r from-indigo-500 via-indigo-400 to-transparent",
     },
   ];
 
   return (
     <section
       id="expertise"
-      className="section-padding relative overflow-hidden"
+      className="section-padding relative overflow-visible"
     >
       {/* Background Ambience */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -z-10"></div>
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] -z-10"></div>
 
       <div className="container mx-auto">
-        <div className="flex flex-col items-center mb-12 animate-fade-in">
+        <div className="flex flex-col items-center mb-16 md:mb-24 animate-fade-in">
           <span className="section-label">My Arsenal</span>
           <h2 className="section-title text-center">
             Technical <span className="gradient-text">Proficiency</span>
@@ -137,92 +147,77 @@ export function ExpertiseSection() {
           </p>
         </div>
 
+        {/* Stacked scroll cards: each card sticks at the same top offset with an
+            ascending z-index, so the next card fully covers the previous one as you
+            scroll — pure CSS position:sticky, reverses for free on scroll-up. */}
         <div className="max-w-4xl mx-auto">
-          <Tabs defaultValue="backend" className="w-full">
-            <div className="flex justify-center mb-8">
-              <TabsList className="grid grid-cols-3 md:grid-cols-5 w-full md:w-auto h-auto bg-secondary/50 p-1 border border-white/5 backdrop-blur-sm rounded-xl">
-                {categories.map((category) => (
-                  <TabsTrigger
-                    key={category.id}
-                    value={category.id}
-                    className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-lg py-2 rounded-lg transition-all duration-300"
-                  >
-                    <div className="flex items-center">
-                      <span className="md:hidden">{category.icon}</span>
-                      <span className="hidden md:flex md:items-center">
-                        {category.icon}
-                        {category.label}
-                      </span>
+          {categories.map((category, index) => (
+            <div
+              key={category.id}
+              className="sticky"
+              style={{
+                top: "88px",
+                zIndex: index + 1,
+              }}
+            >
+              <div className="relative overflow-hidden min-h-[420px] md:min-h-[380px] rounded-[2rem] border border-black/5 dark:border-white/10 bg-background dark:bg-[#0a0a0f]">
+                <div className={`h-1.5 w-full ${category.topBar}`} />
+
+                {/* giant faded index numeral */}
+                <span className="pointer-events-none absolute -right-2 -top-8 text-[8rem] md:text-[9rem] font-black leading-none text-foreground/[0.035] select-none">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                <div className="relative p-6 md:p-8 grid md:grid-cols-[0.9fr_1.1fr] gap-6 md:gap-10">
+                  {/* Left: identity */}
+                  <div className="space-y-3">
+                    <div
+                      className={`inline-flex items-center justify-center w-11 h-11 rounded-2xl ${category.bg} ${category.color}`}
+                    >
+                      {category.icon}
                     </div>
-                  </TabsTrigger>
-                ))}
-              </TabsList>
+                    <div>
+                      <p
+                        className={`text-xs font-bold uppercase tracking-[0.2em] ${category.color} mb-2`}
+                      >
+                        {category.description}
+                      </p>
+                      <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                        {category.title}
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed text-sm">
+                        {category.longDescription}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Right: proficiency */}
+                  <div className="space-y-3 self-center">
+                    {category.skills.map((skill) => {
+                      const pct =
+                        LEVEL_PERCENT[skill.level.toLowerCase()] ?? 70;
+                      return (
+                        <div key={skill.name}>
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="text-sm font-medium text-foreground">
+                              {skill.name}
+                            </span>
+                            <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wide">
+                              {skill.level}
+                            </span>
+                          </div>
+                          <Progress
+                            value={pct}
+                            className={`h-1.5 bg-black/5 dark:bg-white/5 ${category.bar}`}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
             </div>
-
-            {categories.map((category) => (
-              <TabsContent
-                key={category.id}
-                value={category.id}
-                className="mt-0 animate-fade-in"
-              >
-                <Card className="glass-card border-none bg-white/5 overflow-hidden">
-                  <div
-                    className={`h-1 w-full bg-gradient-to-r ${category.bg.replace("bg-", "from-").replace("/10", "")} to-transparent`}
-                  ></div>
-                  <CardContent className="p-6 md:p-8">
-                    <div className="flex flex-col md:flex-row gap-8">
-                      {/* Left Column: Info */}
-                      <div className="flex-1 space-y-4">
-                        <div
-                          className={`inline-flex items-center p-3 rounded-xl ${category.bg} ${category.color}`}
-                        >
-                          {category.icon}
-                        </div>
-                        <div>
-                          <h3 className="text-2xl font-bold mb-1">
-                            {category.title}
-                          </h3>
-                          <p
-                            className={`text-sm font-medium ${category.color} mb-3 uppercase tracking-wider`}
-                          >
-                            {category.description}
-                          </p>
-                          <p className="text-muted-foreground leading-relaxed">
-                            {category.longDescription}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Right Column: Skills */}
-                      <div className="flex-1 bg-black/5 dark:bg-black/20 rounded-2xl p-6 border border-black/5 dark:border-white/5">
-                        <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-widest mb-4">
-                          Core Competencies
-                        </h4>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          {category.skills.map((skill, idx) => (
-                            <div
-                              key={idx}
-                              className="flex items-center justify-between p-2 rounded bg-white/50 dark:bg-white/5 hover:bg-white/80 dark:hover:bg-white/10 transition-colors border border-black/5 dark:border-transparent"
-                            >
-                              <span className="text-sm font-medium text-foreground">
-                                {skill.name}
-                              </span>
-                              <Badge
-                                variant="secondary"
-                                className="text-[10px] h-5 bg-black/5 dark:bg-black/40 text-muted-foreground border-none"
-                              >
-                                {skill.level}
-                              </Badge>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-            ))}
-          </Tabs>
+          ))}
         </div>
       </div>
     </section>
