@@ -1,0 +1,234 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 262 83% 58%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 262 83% 58%;
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 210 40% 98%;
+    --card: 224 71% 4%;
+    --card-foreground: 210 40% 98%;
+    --popover: 224 71% 4%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 263 70% 60%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 263 70% 60%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  * {
+    @apply border-border scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background-image:
+      radial-gradient(circle at 10% 20%,
+        rgba(99, 102, 241, 0.03) 0%,
+        transparent 20%),
+      radial-gradient(circle at 90% 80%,
+        rgba(168, 85, 247, 0.03) 0%,
+        transparent 20%);
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-12 md:py-16 px-4 md:px-8 lg:px-16 overflow-hidden;
+  }
+
+  .glass-card {
+    @apply bg-white/50 backdrop-blur-xl border border-gray-200/50 shadow-lg dark:bg-card/60 dark:border-white/10 dark:shadow-xl dark:shadow-primary/5 rounded-2xl transition-all duration-300;
+  }
+
+  :root:not(.dark) .glass-card:hover {
+    @apply bg-white/80 border-primary/20 shadow-xl;
+  }
+
+  .premium-glass {
+    @apply bg-white/30 backdrop-blur-[10px] border border-gray-200/50 shadow-lg dark:bg-white/5 dark:border-white/10;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl lg:text-6xl font-extrabold mb-12 inline-block relative tracking-tight text-foreground;
+  }
+
+  .section-label {
+    @apply text-sm font-bold tracking-widest text-primary uppercase mb-3 inline-block;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-purple-400 to-blue-500 text-transparent bg-clip-text bg-[length:200%_auto] animate-gradient;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+  }
+
+  .hover-link {
+    @apply relative inline-block transition-all duration-300 hover:text-primary;
+  }
+
+  .hover-link::after {
+    content: "";
+    @apply absolute w-0 h-0.5 bottom-0 left-0 bg-primary transition-all duration-300;
+  }
+
+  .hover-link:hover::after {
+    @apply w-full;
+  }
+
+  .card-hover {
+    @apply transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2 hover:border-primary/30;
+  }
+
+  .btn-glow {
+    @apply relative overflow-hidden transition-all shadow-lg hover:shadow-primary/25;
+  }
+
+  .btn-glow::after {
+    content: "";
+    @apply absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000;
+  }
+
+  .btn-glow:hover::after {
+    @apply translate-x-full;
+  }
+
+  .mesh-gradient {
+    @apply relative;
+  }
+
+  .mesh-blob {
+    @apply absolute rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob;
+  }
+
+  .blob-1 {
+    @apply bg-purple-500 w-96 h-96 top-0 left-0 -translate-x-1/2 -translate-y-1/2;
+  }
+
+  .blob-2 {
+    @apply bg-blue-500 w-96 h-96 bottom-0 right-0 translate-x-1/2 translate-y-1/2 animation-delay-2000;
+  }
+
+  .blob-3 {
+    @apply bg-pink-500 w-80 h-80 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animation-delay-4000;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-gradient {
+    animation: gradient 6s linear infinite;
+  }
+
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+}
+
+/* View Transitions API - Outside of layers to be safe */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
