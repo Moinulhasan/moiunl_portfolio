@@ -4,6 +4,7 @@ import { aiTools } from "@/data/aiTools";
 import {
     Activity,
     ArrowRight,
+    ArrowUpRight,
     AudioLines,
     BrainCircuit,
     Sparkles,
@@ -11,8 +12,8 @@ import {
 import { Link } from "next-view-transitions";
 
 const iconMap: Record<string, React.ReactNode> = {
-    "econotes-studio": <AudioLines className="w-7 h-7" />,
-    "run-gen-ai": <Activity className="w-7 h-7" />,
+    "econotes-studio": <AudioLines className="w-6 h-6" />,
+    "run-gen-ai": <Activity className="w-6 h-6" />,
 };
 
 export function AIToolsSection() {
@@ -48,85 +49,93 @@ export function AIToolsSection() {
                 </div>
 
                 {/* Tools Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                    {aiTools.map((tool, index) => (
-                        <Link
-                            key={tool.id}
-                            href={`/ai-tools/${tool.id}`}
-                            className="group block"
-                            style={{ animationDelay: `${index * 100}ms` }}
-                        >
-                            <Card className="h-full glass-card card-hover border border-black/10 dark:border-white/10 overflow-hidden rounded-xl flex flex-col">
-                                {/* Colored Top Accent Bar */}
-                                <div
-                                    className={`h-1 w-full bg-gradient-to-r ${tool.bg
-                                        .replace("bg-", "from-")
-                                        .replace("/10", "")} to-transparent`}
-                                ></div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                    {aiTools.map((tool) => {
+                        const stack = [
+                            ...tool.frontendStack.slice(0, 2),
+                            ...tool.backendStack.slice(0, 2),
+                        ];
 
-                                <CardContent className="p-6 space-y-4 flex flex-col flex-grow">
-                                    {/* Icon + Category */}
-                                    <div className="flex items-start justify-between">
-                                        <div
-                                            className={`inline-flex items-center justify-center p-3 rounded-xl ${tool.bg} ${tool.color} transition-transform duration-300 group-hover:scale-110`}
-                                        >
-                                            {iconMap[tool.id] || (
-                                                <BrainCircuit className="w-7 h-7" />
-                                            )}
-                                        </div>
-                                        <div className="flex gap-2">
-                                            <Badge
-                                                variant="secondary"
-                                                className="rounded-md px-2 py-0.5 text-xs font-medium bg-green-100 dark:bg-green-500/10 text-green-600 dark:text-green-400 border border-green-200 dark:border-green-500/20"
-                                            >
+                        return (
+                            <Link
+                                key={tool.id}
+                                href={`/ai-tools/${tool.id}`}
+                                className="group block h-full"
+                            >
+                                <Card className="h-full border border-black/10 dark:border-white/10 bg-white/50 dark:bg-card/50 hover:bg-white/90 dark:hover:bg-card/80 transition-all duration-300 overflow-hidden rounded-xl flex flex-col shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-primary/20">
+                                    {/* Product Screenshot */}
+                                    <div className="relative aspect-[16/10] overflow-hidden border-b border-border/40 shrink-0 bg-black">
+                                        <img
+                                            src={tool.cardImage}
+                                            alt={tool.name}
+                                            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                                        />
+                                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+
+                                        <div className="absolute top-3 left-3 flex items-center gap-2">
+                                            <Badge className="rounded-md px-2 py-0.5 text-xs font-medium bg-green-500/90 text-white border-none shadow">
+                                                <span className="w-1.5 h-1.5 rounded-full bg-white mr-1.5" />
                                                 {tool.status}
                                             </Badge>
                                             <Badge
                                                 variant="secondary"
-                                                className="rounded-md px-2 py-0.5 text-xs font-medium bg-gray-100 dark:bg-secondary text-secondary-foreground border border-black/5 dark:border-transparent"
+                                                className="rounded-md px-2 py-0.5 text-xs font-medium bg-black/60 text-white border-none shadow backdrop-blur-sm"
                                             >
                                                 {tool.category}
                                             </Badge>
                                         </div>
-                                    </div>
 
-                                    {/* Tool Name + Description */}
-                                    <div className="space-y-2 flex-grow">
-                                        <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                                            {tool.name}
-                                        </h3>
-                                        <p
-                                            className={`text-sm font-medium ${tool.color} uppercase tracking-wider`}
+                                        <div
+                                            className={`absolute inline-flex items-center justify-center bottom-3 right-3 p-2.5 rounded-xl ${tool.bg} ${tool.color} backdrop-blur-md`}
                                         >
-                                            {tool.description}
-                                        </p>
-                                        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
-                                            {tool.longDescription}
-                                        </p>
+                                            {iconMap[tool.id] || (
+                                                <BrainCircuit className="w-6 h-6" />
+                                            )}
+                                        </div>
                                     </div>
 
-                                    {/* Tech Tags */}
-                                    <div className="flex flex-wrap gap-1.5">
-                                        {[...tool.frontendStack.slice(0, 2), ...tool.backendStack.slice(0, 1)].map((tech) => (
-                                            <Badge
-                                                key={tech}
-                                                variant="outline"
-                                                className="text-[10px] px-1.5 py-0 border-primary/15 text-muted-foreground"
+                                    {/* Content */}
+                                    <CardContent className="p-6 space-y-4 flex flex-col flex-grow">
+                                        <div className="space-y-2 flex-grow">
+                                            <h3 className="text-xl font-semibold leading-tight text-foreground group-hover:text-primary transition-colors">
+                                                {tool.name}
+                                            </h3>
+                                            <p
+                                                className={`text-xs font-semibold ${tool.color} uppercase tracking-wider`}
                                             >
-                                                {tech}
-                                            </Badge>
-                                        ))}
-                                    </div>
+                                                {tool.description}
+                                            </p>
+                                            <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
+                                                {tool.longDescription}
+                                            </p>
+                                        </div>
 
-                                    {/* Bottom Link Hint */}
-                                    <div className="flex items-center text-sm font-medium text-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pt-2 mt-auto">
-                                        View Details{" "}
-                                        <ArrowRight className="ml-1.5 h-4 w-4" />
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </Link>
-                    ))}
+                                        <div className="flex flex-wrap gap-1.5">
+                                            {stack.map((tech) => (
+                                                <Badge
+                                                    key={tech}
+                                                    variant="outline"
+                                                    className="text-[10px] px-1.5 py-0 border-primary/15 text-muted-foreground"
+                                                >
+                                                    {tech}
+                                                </Badge>
+                                            ))}
+                                        </div>
+
+                                        <div className="flex items-center justify-between pt-2 mt-auto border-t border-border/40">
+                                            <span className="flex items-center text-sm font-medium text-primary">
+                                                View Details
+                                                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                                            </span>
+                                            <span className="text-muted-foreground group-hover:text-primary transition-colors">
+                                                <ArrowUpRight className="h-4 w-4" />
+                                            </span>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </Link>
+                        );
+                    })}
                 </div>
             </div>
         </section>

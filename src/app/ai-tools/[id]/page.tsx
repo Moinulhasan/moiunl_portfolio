@@ -123,11 +123,7 @@ export default async function AIToolDetails(props: {
                         <div className="relative animate-in slide-in-from-right duration-500 flex items-center justify-center">
                             <div className="relative w-full max-w-md mx-auto">
                                 <Card className="glass-card border border-black/10 dark:border-white/10 overflow-hidden">
-                                    <div
-                                        className={`h-2 w-full bg-gradient-to-r ${tool.bg
-                                            .replace("bg-", "from-")
-                                            .replace("/10", "")} to-transparent`}
-                                    ></div>
+                                    <div className={`h-2 w-full ${tool.topBar}`}></div>
                                     <CardContent className="p-10 flex flex-col items-center justify-center space-y-6 text-center">
                                         <div
                                             className={`inline-flex items-center justify-center p-6 rounded-2xl ${tool.bg} ${tool.color}`}

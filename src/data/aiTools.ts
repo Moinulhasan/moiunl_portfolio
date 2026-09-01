@@ -5,8 +5,10 @@ export interface AITool {
   longDescription: string;
   category: string;
   link: string;
+  cardImage: string;
   color: string;
   bg: string;
+  topBar: string;
   // Detail page fields — tools the user built
   aiModel: string;
   frontendStack: string[];
@@ -26,8 +28,10 @@ export const aiTools: AITool[] = [
       "An intelligent AI-powered audio transcription and note-taking platform that converts voice recordings into structured, actionable content. Supports Bengali and English with multiple AI modes including Meeting Minutes, Code extraction, Blog drafts, and Study Guides — transforming how professionals and students capture knowledge.",
     category: "Transcription & Notes",
     link: "https://echonotestudio.com",
+    cardImage: "/ai-tools/econotes-studio.png",
     color: "text-emerald-400",
     bg: "bg-emerald-500/10",
+    topBar: "bg-gradient-to-r from-emerald-500 via-emerald-400 to-transparent",
     aiModel:
       "Groq (Whisper) for transcription, Google Gemini for AI processing",
     frontendStack: ["Next.js", "React", "Tailwind CSS", "TypeScript"],
@@ -59,8 +63,10 @@ export const aiTools: AITool[] = [
       "A premium SaaS platform that generates personalized training plans for runners using AI. It integrates with Strava, Garmin, and COROS to analyze athlete data and create adaptive schedules for goals ranging from 5K to Full Marathon, ensuring optimal performance while preventing overtraining.",
     category: "Fitness & Health",
     link: "https://getmyracepace.moinul4u.com",
+    cardImage: "/ai-tools/run-gen-ai.png",
     color: "text-violet-400",
     bg: "bg-violet-500/10",
+    topBar: "bg-gradient-to-r from-violet-500 via-violet-400 to-transparent",
     aiModel: "OpenAI GPT-4o for adaptive plan logic & coach insights",
     frontendStack: [
       "Next.js 14",
