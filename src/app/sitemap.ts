@@ -1,14 +1,21 @@
+import { aiTools } from "@/data/aiTools";
 import { projects } from "@/data/projects";
 import type { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    // TODO: Replace with your actual domain
-    const baseUrl = "https://moinulhasan.com";
+    const baseUrl = "https://moinul4u.com";
 
     const projectUrls = projects.map((project) => ({
         url: `${baseUrl}/project/${project.id}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly" as const,
+        priority: 0.8,
+    }));
+
+    const aiToolUrls = aiTools.map((tool) => ({
+        url: `${baseUrl}/ai-tools/${tool.id}`,
         lastModified: new Date(),
         changeFrequency: "monthly" as const,
         priority: 0.8,
@@ -22,5 +29,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 1,
         },
         ...projectUrls,
+        ...aiToolUrls,
     ];
 }

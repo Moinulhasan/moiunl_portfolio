@@ -37,42 +37,45 @@ export function AboutSection() {
 
           <div className="prose prose-lg dark:prose-invert mx-auto mb-12 leading-relaxed text-muted-foreground text-left md:text-center">
             <p className="mb-6">
-              I am a specialized{" "}
+              I&apos;m a{" "}
               <span className="text-foreground font-semibold">
-                Senior Software Engineer
+                Senior Software Specialist
               </span>{" "}
-              with a deep focus on the
-              <a href="#expertise" className="text-primary font-semibold hover:underline decoration-primary/20 transition-all">
-                {" "}
-                #PHP & #Laravel
+              based in Dhaka, Bangladesh, with 5+ years architecting scalable
+              web applications in the{" "}
+              <a
+                href="#expertise"
+                className="text-primary font-semibold hover:underline decoration-primary/20 transition-all"
+              >
+                PHP and Laravel
               </a>{" "}
-              ecosystem. My journey involves not just writing code, but
-              architecting scalable systems that drive business growth.
+              ecosystem — backed by MySQL, MongoDB, and Redis for data that
+              holds up under real production load.
             </p>
 
             <p className="mb-6">
-              Currently innovating at{" "}
+              Currently at{" "}
               <span className="text-foreground font-semibold">
                 SSL Wireless
               </span>
-              , I handle complex backend challenges, optimizing databases for
-              millions of records, and building microservices that work
-              seamlessly. I believe in clean architecture, test-driven
-              development, and the power of cloud computing.
+              , I build ERP billing systems, microservice-based applications,
+              and automated job scheduling that keep mission-critical
+              financial systems running reliably, while deploying and scaling
+              infrastructure on AWS with Docker.
             </p>
 
             <p>
-              Whether it's refactoring legacy codebases or building next-gen
-              applications from scratch, I bring a blend of{" "}
-              <a href="#expertise" className="text-foreground font-semibold hover:text-primary transition-colors">
-                #TechnicalPrecision
-              </a>{" "}
-              and
-              <a href="#expertise" className="text-foreground font-semibold hover:text-primary transition-colors">
-                {" "}
-                #StrategicThinking
-              </a>{" "}
-              to every project.
+              From a multi-vendor e-commerce platform at IOTA Infotech to a
+              distributor management system serving the Bangladesh market, I
+              bring the same focus to every{" "}
+              <a
+                href="#projects"
+                className="text-foreground font-semibold hover:text-primary transition-colors"
+              >
+                project
+              </a>
+              : clean architecture, measurable business impact, and
+              dependable delivery.
             </p>
           </div>
 

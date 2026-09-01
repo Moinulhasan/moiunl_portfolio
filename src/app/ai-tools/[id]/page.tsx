@@ -18,12 +18,43 @@ import {
     Sparkles,
 } from "lucide-react";
 import { Link } from "next-view-transitions";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
     return aiTools.map((tool) => ({
         id: tool.id,
     }));
+}
+
+export async function generateMetadata(props: {
+    params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+    const params = await props.params;
+    const tool = aiTools.find((t) => t.id === params.id);
+
+    if (!tool) {
+        return {};
+    }
+
+    return {
+        title: tool.name,
+        description: tool.longDescription,
+        alternates: { canonical: `/ai-tools/${tool.id}` },
+        openGraph: {
+            title: tool.name,
+            description: tool.longDescription,
+            url: `/ai-tools/${tool.id}`,
+            type: "article",
+            images: [{ url: tool.cardImage }],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: tool.name,
+            description: tool.longDescription,
+            images: [tool.cardImage],
+        },
+    };
 }
 
 const iconMap: Record<string, React.ReactNode> = {

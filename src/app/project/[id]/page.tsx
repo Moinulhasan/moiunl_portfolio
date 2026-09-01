@@ -14,12 +14,43 @@ import {
 } from "lucide-react";
 import { Link } from "next-view-transitions";
 import { ViewTransitionItem } from "@/components/ViewTransition";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
     return projects.map((project) => ({
         id: project.id,
     }));
+}
+
+export async function generateMetadata(props: {
+    params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+    const params = await props.params;
+    const project = projects.find((p) => p.id === params.id);
+
+    if (!project) {
+        return {};
+    }
+
+    return {
+        title: project.title,
+        description: project.shortDescription,
+        alternates: { canonical: `/project/${project.id}` },
+        openGraph: {
+            title: project.title,
+            description: project.shortDescription,
+            url: `/project/${project.id}`,
+            type: "article",
+            images: [{ url: project.image }],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: project.title,
+            description: project.shortDescription,
+            images: [project.image],
+        },
+    };
 }
 
 export default async function ProjectDetails(props: { params: Promise<{ id: string }> }) {

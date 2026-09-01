@@ -9,8 +9,9 @@ import { CertificationsSection } from "@/components/CertificationsSection";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Moinul Hasan Khan | PHP & Laravel Developer",
-  description: "Portfolio of Moinul Hasan Khan, detailing expertise in PHP, Laravel, and more.",
+  title: "Senior PHP & Laravel Developer",
+  description:
+    "Portfolio of Moinul Hasan Khan, Senior Software Specialist based in Dhaka, Bangladesh — PHP, Laravel, MySQL, Redis, and AWS expertise.",
 };
 
 export default function Home() {

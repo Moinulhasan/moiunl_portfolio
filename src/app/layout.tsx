@@ -10,9 +10,66 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-heading" });
 
+const siteUrl = "https://moinul4u.com";
+const siteTitle = "Moinul Hasan Khan | Senior PHP & Laravel Developer";
+const siteDescription =
+  "Portfolio of Md Moinul Hasan Khan, Senior Software Specialist based in Dhaka, Bangladesh, specializing in PHP, Laravel, MySQL, Redis, and AWS.";
+const ogImage = "/Moinul_Hasan_Khan_1890.png";
+
 export const metadata: Metadata = {
-  title: "Moinul Hasan | Portfolio",
-  description: "Portfolio of Moinul Hasan - Full Stack Developer",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteTitle,
+    template: "%s | Moinul Hasan Khan",
+  },
+  description: siteDescription,
+  keywords: [
+    "Moinul Hasan Khan",
+    "PHP Developer",
+    "Laravel Developer",
+    "Senior Software Engineer Bangladesh",
+    "Full Stack Developer Dhaka",
+    "Laravel Portfolio",
+  ],
+  authors: [{ name: "Moinul Hasan Khan", url: siteUrl }],
+  creator: "Moinul Hasan Khan",
+  publisher: "Moinul Hasan Khan",
+  alternates: {
+    canonical: siteUrl,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    url: siteUrl,
+    siteName: "Moinul Hasan Khan Portfolio",
+    title: siteTitle,
+    description: siteDescription,
+    locale: "en_US",
+    images: [
+      {
+        url: ogImage,
+        width: 1200,
+        height: 1200,
+        alt: "Moinul Hasan Khan",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: [ogImage],
+  },
 };
 
 import Script from "next/script";
