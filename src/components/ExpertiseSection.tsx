@@ -131,9 +131,13 @@ export function ExpertiseSection() {
       id="expertise"
       className="section-padding relative overflow-visible"
     >
-      {/* Background Ambience */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -z-10"></div>
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] -z-10"></div>
+      {/* Background Ambience — its own overflow-hidden wrapper, kept separate
+          from the sticky cards below so it can't break position:sticky while
+          still containing these off-edge blobs on narrow viewports. */}
+      <div className="absolute inset-0 overflow-hidden -z-10">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px]"></div>
+      </div>
 
       <div className="container mx-auto">
         <div className="flex flex-col items-center mb-16 md:mb-24 animate-fade-in">

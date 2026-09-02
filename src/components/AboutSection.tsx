@@ -5,7 +5,7 @@ export function AboutSection() {
   const stats = [
     {
       label: "Years Experience",
-      value: "5+",
+      value: "6+",
       icon: <Rocket className="w-5 h-5 text-purple-600 dark:text-purple-400" />,
     },
     {
@@ -41,7 +41,7 @@ export function AboutSection() {
               <span className="text-foreground font-semibold">
                 Senior Software Specialist
               </span>{" "}
-              based in Dhaka, Bangladesh, with 5+ years architecting scalable
+              based in Dhaka, Bangladesh, with 6+ years architecting scalable
               web applications in the{" "}
               <a
                 href="#expertise"

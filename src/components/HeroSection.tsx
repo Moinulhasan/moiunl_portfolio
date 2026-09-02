@@ -2,15 +2,63 @@
 import { Button } from "@/components/ui/button";
 import {
   ArrowDown,
+  Cloud,
   Code2,
   Cpu,
+  Database,
   Download,
   Github,
+  Layers,
   Linkedin,
   Mail,
   Terminal,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+
+const ORBIT_DURATION = 40;
+
+const skillBadges = [
+  {
+    title: "Backend",
+    subtitle: "Expert",
+    icon: Terminal,
+    borderClass: "border-l-blue-500",
+    iconClass: "text-blue-500",
+    mobile: true,
+  },
+  {
+    title: "Database",
+    subtitle: "MySQL",
+    icon: Database,
+    borderClass: "border-l-emerald-500",
+    iconClass: "text-emerald-500",
+    mobile: false,
+  },
+  {
+    title: "Cloud",
+    subtitle: "AWS",
+    icon: Cloud,
+    borderClass: "border-l-sky-500",
+    iconClass: "text-sky-500",
+    mobile: false,
+  },
+  {
+    title: "Microservices",
+    subtitle: "Architecture",
+    icon: Layers,
+    borderClass: "border-l-indigo-500",
+    iconClass: "text-indigo-500",
+    mobile: false,
+  },
+  {
+    title: "Scalable",
+    subtitle: "Systems",
+    icon: Cpu,
+    borderClass: "border-l-primary",
+    iconClass: "text-primary",
+    mobile: true,
+  },
+];
 
 export function HeroSection() {
   const [text, setText] = useState("");
@@ -150,25 +198,30 @@ export function HeroSection() {
                 </div>
               </div>
 
-              {/* Floating Elements */}
-              <div className="absolute -right-4 top-10 glass-card p-3 rounded-xl animate-float z-20 flex items-center gap-2 border-l-4 border-l-blue-500">
-                <Terminal className="w-5 h-5 text-blue-500" />
-                <div className="text-xs">
-                  <div className="font-bold">Backend</div>
-                  <div className="text-muted-foreground">Expert</div>
+              {/* Floating Elements — evenly spaced on a shared orbit, so
+                  fixed angular spacing + synced speed means they can never
+                  overlap, no matter how long the animation runs. */}
+              {skillBadges.map((badge, i) => (
+                <div
+                  key={badge.title}
+                  className="absolute top-1/2 left-1/2 w-0 h-0 flex items-center justify-center orbit-badge z-20"
+                  style={{
+                    animationDelay: `${-(i * ORBIT_DURATION) / skillBadges.length}s`,
+                  }}
+                >
+                  <div
+                    className={`glass-card p-3 rounded-xl items-center gap-2 border-l-4 whitespace-nowrap ${badge.borderClass} ${
+                      badge.mobile ? "flex" : "hidden md:flex"
+                    }`}
+                  >
+                    <badge.icon className={`w-5 h-5 ${badge.iconClass}`} />
+                    <div className="text-xs">
+                      <div className="font-bold">{badge.title}</div>
+                      <div className="text-muted-foreground">{badge.subtitle}</div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-
-              <div
-                className="absolute -left-4 bottom-20 glass-card p-3 rounded-xl animate-float z-20 flex items-center gap-2 border-l-4 border-l-primary"
-                style={{ animationDelay: "1.5s" }}
-              >
-                <Cpu className="w-5 h-5 text-primary" />
-                <div className="text-xs">
-                  <div className="font-bold">Scalable</div>
-                  <div className="text-muted-foreground">Systems</div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

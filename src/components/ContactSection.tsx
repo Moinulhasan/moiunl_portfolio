@@ -1,7 +1,6 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
@@ -101,9 +100,20 @@ export function ContactSection() {
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Contact Information Side */}
-          <div className="space-y-8 animate-in slide-in-from-left duration-500">
-            <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 space-y-8 shadow-sm">
-              <h3 className="text-xl font-semibold">Contact Details</h3>
+          <div className="min-w-0 space-y-8 animate-in slide-in-from-left duration-500">
+            <div className="glass-card card-hover overflow-hidden">
+              <div className="h-1.5 w-full bg-gradient-to-r from-primary via-purple-400 to-transparent" />
+              <div className="p-8 space-y-8">
+                <div className="flex items-center justify-between gap-4">
+                  <h3 className="text-xl font-semibold">Contact Details</h3>
+                  <span className="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-500">
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
+                    </span>
+                    Replies within 24h
+                  </span>
+                </div>
 
               <div className="space-y-6">
                 <a
@@ -147,16 +157,27 @@ export function ContactSection() {
                 <p className="text-sm text-muted-foreground mb-4 font-medium">Connect on Socials</p>
                 <div className="flex gap-3">
                   <Button variant="outline" size="icon" asChild className="rounded-full hover:text-primary hover:border-primary/50 hover:bg-primary/5">
-                    <a href="https://github.com/Moinulhasan" target="_blank" rel="noopener noreferrer">
+                    <a
+                      href="https://github.com/Moinulhasan"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="GitHub"
+                    >
                       <Github className="h-4 w-4" />
                     </a>
                   </Button>
                   <Button variant="outline" size="icon" asChild className="rounded-full hover:text-primary hover:border-primary/50 hover:bg-primary/5">
-                    <a href="https://www.linkedin.com/in/moinul4u/" target="_blank" rel="noopener noreferrer">
+                    <a
+                      href="https://www.linkedin.com/in/moinul4u/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn"
+                    >
                       <Linkedin className="h-4 w-4" />
                     </a>
                   </Button>
                 </div>
+              </div>
               </div>
             </div>
 
@@ -173,8 +194,9 @@ export function ContactSection() {
           </div>
 
           {/* Contact Form Side */}
-          <div className="bg-card border border-border/50 rounded-2xl p-8 shadow-lg animate-in slide-in-from-right duration-500 relative">
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="min-w-0 glass-card card-hover overflow-hidden animate-in slide-in-from-right duration-500 relative">
+            <div className="h-1.5 w-full bg-gradient-to-r from-primary via-purple-400 to-transparent" />
+            <form onSubmit={handleSubmit} className="space-y-6 p-8">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-foreground/80">Name</label>

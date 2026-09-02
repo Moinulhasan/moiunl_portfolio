@@ -18,6 +18,34 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+    {
+    id: "easy-consumer-platform",
+    title: "Easy Consumer Platform",
+    shortDescription:
+      "Scalable consumer platform with payment gateway, inventory, and CRM features.",
+    fullDescription:
+      "Built a scalable consumer platform with payment gateway integration, inventory management, and customer relationship features. Implemented a microservices architecture using Laravel, MySQL and Redis for optimal performance and user experience. This platform serves as a one-stop solution for consumers to manage their subscriptions, payments, and service requests.",
+    image: "/project/easy_profile.jfif",
+    cardImage: "/project/easy_profile.jfif",
+    technologies: [
+      "Laravel",
+      "MySQL",
+      "Redis",
+      "Payment APIs",
+      "Microservices",
+    ],
+    role: "Full Stack Developer",
+    liveLink: "https://easy.com.bd/",
+    features: [
+      "Seamless payment gateway integration",
+      "Real-time inventory management",
+      "Customer support ticketing system",
+      "Personalized user dashboards",
+      "Automated subscription renewals",
+    ],
+    year: "2022",
+    company: "Easy",
+  },
   {
     id: "overseas-expat-portal",
     title: "Overseas FacilitateXpat Portal",
@@ -77,34 +105,6 @@ export const projects: Project[] = [
     ],
     year: "2023",
     company: "SSL Wireless",
-  },
-  {
-    id: "easy-consumer-platform",
-    title: "Easy Consumer Platform",
-    shortDescription:
-      "Scalable consumer platform with payment gateway, inventory, and CRM features.",
-    fullDescription:
-      "Built a scalable consumer platform with payment gateway integration, inventory management, and customer relationship features. Implemented a microservices architecture using Laravel, MySQL and Redis for optimal performance and user experience. This platform serves as a one-stop solution for consumers to manage their subscriptions, payments, and service requests.",
-    image: "/project/easy_profile.jfif",
-    cardImage: "/project/easy_profile.jfif",
-    technologies: [
-      "Laravel",
-      "MySQL",
-      "Redis",
-      "Payment APIs",
-      "Microservices",
-    ],
-    role: "Full Stack Developer",
-    liveLink: "https://easy.com.bd/",
-    features: [
-      "Seamless payment gateway integration",
-      "Real-time inventory management",
-      "Customer support ticketing system",
-      "Personalized user dashboards",
-      "Automated subscription renewals",
-    ],
-    year: "2022",
-    company: "Easy",
   },
   {
     id: "bat-roi-dashboard",

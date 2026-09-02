@@ -224,6 +224,28 @@
   .animation-delay-4000 {
     animation-delay: 4s;
   }
+
+  /* Orbit: rotate(θ) translateX(R) rotate(-θ) traces a circle while the
+     two rotations cancel, so the badge content itself never spins. */
+  @keyframes orbit {
+    from {
+      transform: rotate(0deg) translateX(var(--orbit-radius, 150px)) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(var(--orbit-radius, 150px)) rotate(-360deg);
+    }
+  }
+
+  .orbit-badge {
+    --orbit-radius: 150px;
+    animation: orbit 40s linear infinite;
+  }
+
+  @media (min-width: 768px) {
+    .orbit-badge {
+      --orbit-radius: 215px;
+    }
+  }
 }
 
 /* View Transitions API - Outside of layers to be safe */
