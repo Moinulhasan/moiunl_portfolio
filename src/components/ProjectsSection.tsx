@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { projects } from "@/data/projects";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { Link } from "next-view-transitions";
+import { Link } from "@/components/TransitionLink";
 import { ViewTransitionItem } from "./ViewTransition";
 
 export function ProjectsSection() {
@@ -54,6 +54,7 @@ export function ProjectsSection() {
                       <img
                         src={project.cardImage}
                         alt={project.title}
+                        loading="lazy"
                         className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                       />
                     </ViewTransitionItem>

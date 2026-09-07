@@ -54,7 +54,7 @@ export const projects: Project[] = [
     fullDescription:
       "Developed a comprehensive overseas expat support portal that serves as a centralized hub for users seeking information, guidance, and services related to international opportunities. The system provides intuitive navigation, resource pages, and service links tailored to expatriates planning to work, study, or live abroad. It enhances user engagement with clear pathways to relevant country guides, visa information, and relocation assistance.",
     image: "/project/overseas/home.jpg",
-    cardImage: "/project/overseas/overseas-expat-portal.png",
+    cardImage: "/project/overseas/overseas-expat-portal.webp",
     technologies: [
       "Laravel",
       "MySQL",
@@ -86,8 +86,8 @@ export const projects: Project[] = [
       "A comprehensive ERP Billing System for a telecom company using Laravel, MySQL, Redis, and AWS.",
     fullDescription:
       "Developed a comprehensive ERP Billing System for a telecom company using Laravel, MySQL, Redis, and AWS. The system streamlined billing processes, reduced errors by 35%, and improved overall operational efficiency by automating complex calculations and generating detailed reports. The system handles millions of transactions daily and provides real-time insights into revenue and customer usage.",
-    image: "/project/billing.png",
-    cardImage: "/project/billing.png",
+    image: "/project/billing.webp",
+    cardImage: "/project/billing.webp",
     technologies: ["Laravel", "MySQL", "Redis", "AWS", "Vue.js"],
     role: "Lead Developer",
     liveLink: "https://ssl-billing.sslwireless.com/",
@@ -135,8 +135,8 @@ export const projects: Project[] = [
       "A comprehensive real-estate listing and property services platform for buying, selling, and renting properties across Bangladesh.",
     fullDescription:
       "Developed an intuitive real-estate portal providing a full suite of property services including buying, selling, and renting residential and commercial spaces. The platform features verified listings, search filters, and support services such as legal assistance and interior design consultations. It streamlines property transactions and connects users to trusted local agents for seamless experiences in the Bangladesh real-estate market.",
-    image: "/project/dpropert/dproperty.png",
-    cardImage: "/project/dpropert/dproperty-portal.png",
+    image: "/project/dpropert/dproperty.webp",
+    cardImage: "/project/dpropert/dproperty-portal.webp",
     technologies: ["Laravel", "MySQL", "Tailwind CSS", "API Integrations"],
     role: "Full Stack Developer",
     liveLink: "https://dproperty.com.bd/",

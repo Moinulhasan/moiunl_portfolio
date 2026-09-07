@@ -14,7 +14,7 @@ const siteUrl = "https://moinul4u.com";
 const siteTitle = "Moinul Hasan Khan | Senior PHP & Laravel Developer";
 const siteDescription =
   "Portfolio of Md Moinul Hasan Khan, Senior Software Specialist based in Dhaka, Bangladesh, specializing in PHP, Laravel, MySQL, Redis, and AWS.";
-const ogImage = "/Moinul_Hasan_Khan_1890.png";
+const ogImage = "/Moinul_Hasan_Khan_1890.webp";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -127,7 +127,7 @@ export default function RootLayout({
                     "@type": "Person",
                     "name": "Moinul Hasan Khan",
                     "url": "https://moinul4u.com",
-                    "image": "https://moinul4u.com/Moinul_Hasan_Khan_1890.png",
+                    "image": "https://moinul4u.com/Moinul_Hasan_Khan_1890.webp",
                     "jobTitle": "Senior PHP & Laravel Developer",
                     "sameAs": [
                       "https://github.com/Moinulhasan",

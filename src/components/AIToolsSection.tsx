@@ -9,7 +9,7 @@ import {
     BrainCircuit,
     Sparkles,
 } from "lucide-react";
-import { Link } from "next-view-transitions";
+import { Link } from "@/components/TransitionLink";
 
 const iconMap: Record<string, React.ReactNode> = {
     "econotes-studio": <AudioLines className="w-6 h-6" />,
@@ -68,6 +68,7 @@ export function AIToolsSection() {
                                         <img
                                             src={tool.cardImage}
                                             alt={tool.name}
+                                            loading="lazy"
                                             className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                                         />
                                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />

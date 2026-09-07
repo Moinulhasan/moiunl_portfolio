@@ -17,7 +17,7 @@ import {
     Server,
     Sparkles,
 } from "lucide-react";
-import { Link } from "next-view-transitions";
+import { Link } from "@/components/TransitionLink";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 

@@ -1,6 +1,6 @@
 "use client";
 import { Menu, X } from "lucide-react";
-import { Link } from "next-view-transitions";
+import { Link } from "@/components/TransitionLink";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "./ThemeToggle";
 
