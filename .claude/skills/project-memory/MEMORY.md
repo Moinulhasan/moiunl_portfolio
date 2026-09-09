@@ -22,6 +22,12 @@ Read [SKILL.md](SKILL.md) first for how to read/write this file.
   (purple/sky/emerald/pink/yellow/indigo) driven by literal Tailwind class
   fields in the data objects. Match this instead of inventing a new palette
   per section.
+- **Google Analytics ID (`G-GH5QYERB7Z`) is hardcoded in `src/app/layout.tsx`**,
+  not read from `NEXT_PUBLIC_GA_ID`. It used to be env-gated (see
+  `.env.local.example`, now deleted), but this is a static export with no
+  `.env.local` or CI env config anywhere in the repo, so the var was never
+  actually set and GA never fired in production. Fixed 2026-09-09. A GA
+  measurement ID is a public identifier, not a secret — hardcoding it is fine.
 - **Never build Tailwind classes at runtime via string concatenation**
   (e.g. `` `bg-gradient-to-r ${x.bg.replace("bg-","from-")}` ``). Tailwind's
   compiler only sees literal class strings in source — anything built at
@@ -79,6 +85,24 @@ Read [SKILL.md](SKILL.md) first for how to read/write this file.
   2026-09-02. If you add more decorative/ambient elements to this
   section, wrap them the same way — don't rely on the section's own
   overflow setting to contain them.
+- **Always import `Link` from `@/components/TransitionLink`, never directly
+  from `next-view-transitions`, for any client-side route navigation.** The
+  raw library (`node_modules/next-view-transitions`) drives every transition
+  through one shared "finish transition" callback stored in a single piece
+  of state; clicking a second transition link before the first resolves
+  overwrites that callback, so the first transition's promise never
+  settles and the page gets stuck mid-animation. `TransitionLink.tsx` wraps
+  it with a click guard (ignore clicks while one is in flight, released on
+  pathname change). Fixed 2026-09-07/08 across `NavBar.tsx`,
+  `ProjectsSection.tsx`, `AIToolsSection.tsx`, and both `[id]/page.tsx`
+  detail pages. The library's own `popstate` (browser back/forward) handler
+  has the same race and isn't guarded — not fixable without patching
+  `node_modules`.
+- **`* { scroll-smooth }` in `globals.css` was removed 2026-09-08.** It made
+  every in-page nav anchor (`#about`, `#projects`, etc.) animate instead of
+  jump, and rapid clicks between links just kept re-aiming the same in-flight
+  scroll animation instead of landing — felt like the page was "stuck."
+  Don't re-add smooth scrolling to nav anchors without addressing that.
 - **Don't run a second `npm run dev` / `rm -rf .next` while the user
   already has one running.** Two Turbopack instances writing the same
   `.next` cache directory concurrently corrupts it ("Persisting failed:
@@ -94,6 +118,34 @@ Read [SKILL.md](SKILL.md) first for how to read/write this file.
 
 <!-- Newest entry first. Keep entries short — this is a memory aid, not a changelog. -->
 
+- **2026-09-07 to 2026-09-09** — Performance + bug-fix pass driven by
+  Lighthouse reports the user supplied (`optimize.json`, desktop then
+  mobile). Desktop: recompressed the two oversized project card screenshots
+  (`overseas-expat-portal.png` 8.3MB, `dproperty-portal.png` 4.1MB — full
+  page-length screenshots only ever shown as small `object-top` card
+  thumbnails) plus the hero/other project images to WebP, cropping the two
+  giants to their visible top slice first (see `image-delivery-insight` /
+  `total-byte-weight` findings) — total page weight ~14MB → ~4.4MB; removed
+  a dead `@import` of Google Fonts in `globals.css` (pure duplicate of the
+  `next/font/google` already in `layout.tsx`, was render-blocking for no
+  reason); added `loading="lazy"` to below-the-fold card/gallery images.
+  Fixed a real bug (not from the report): rapid-clicking between menu/card
+  links froze the page — root cause and fix in the `TransitionLink` gotcha
+  above. Also removed `scroll-smooth` (see gotcha above) after the user
+  reported clicking the nav menu quickly felt stuck. Mobile Lighthouse
+  follow-up: added `fetchPriority="high"` to the hero image (it's the LCP
+  element, was missing the priority hint); deleted dead
+  `src/components/ui/carousel.tsx` + the `embla-carousel-react` dependency
+  (unused since Projects moved to the coverflow carousel — doesn't move the
+  Lighthouse score since it was already tree-shaken out, just cleanup).
+  Noted but did NOT act on: the mobile report's `cache-insight` finding was
+  an artifact of testing against a local `npx serve` preview server (no
+  cache headers by design), not the real production host — don't chase it
+  again if it resurfaces in a report against `localhost`. Also hardcoded
+  the GA ID (see Key Facts). All changes verified with a clean
+  `npm run build`; the view-transition and scroll fixes could only be
+  verified by build/type-check plus the user's own manual click-testing —
+  no browser-automation tool is available in this environment.
 - **2026-09-02** — Fixed real mobile-responsiveness bugs found via a
   Playwright audit (per-element `getBoundingClientRect` + document-level
   `scrollWidth` check across 360/375/390px viewports): Contact section's
